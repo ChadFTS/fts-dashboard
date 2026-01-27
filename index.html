@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clare's Project Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #334155;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+        .header .date {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #334155;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .badge {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 9999px;
+            font-weight: 500;
+        }
+        .badge-blue { background: #1e40af; color: #93c5fd; }
+        .badge-green { background: #166534; color: #86efac; }
+        .badge-orange { background: #9a3412; color: #fdba74; }
+        .badge-purple { background: #6b21a8; color: #d8b4fe; }
+        
+        .task-list {
+            list-style: none;
+        }
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #334155;
+        }
+        .task-item:last-child {
+            border-bottom: none;
+        }
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #475569;
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .checkbox.checked {
+            background: #22c55e;
+            border-color: #22c55e;
+        }
+        .checkbox.checked::after {
+            content: "✓";
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .task-content {
+            flex: 1;
+        }
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .task-title.completed {
+            text-decoration: line-through;
+            color: #64748b;
+        }
+        .task-meta {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .priority-high { border-left: 3px solid #ef4444; padding-left: 12px; }
+        .priority-medium { border-left: 3px solid #f59e0b; padding-left: 12px; }
+        .priority-low { border-left: 3px solid #22c55e; padding-left: 12px; }
+        
+        .section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .stat-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            flex: 1;
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 16px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #f8fafc;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+        
+        .project-link {
+            display: block;
+            padding: 8px 12px;
+            background: #334155;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            color: #e2e8f0;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .project-link:hover {
+            background: #475569;
+        }
+        .project-link .path {
+            color: #64748b;
+            font-size: 12px;
+        }
+        
+        .team-member {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #334155;
+        }
+        .team-member:last-child {
+            border-bottom: none;
+        }
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #6366f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .member-info {
+            flex: 1;
+        }
+        .member-name {
+            font-weight: 500;
+        }
+        .member-role {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .request-count {
+            background: #334155;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Project Dashboard</h1>
+        <div class="date">Last updated: January 27, 2026</div>
+    </div>
+    
+    <div class="stat-row">
+        <div class="stat-card">
+            <div class="stat-number" style="color: #60a5fa;">3</div>
+            <div class="stat-label">Active Projects</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" style="color: #f59e0b;">8</div>
+            <div class="stat-label">Open Tasks</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" style="color: #22c55e;">5</div>
+            <div class="stat-label">Completed Today</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" style="color: #a855f7;">1</div>
+            <div class="stat-label">Clients</div>
+        </div>
+    </div>
+    
+    <div class="grid">
+        <!-- FTS Tasks -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🚀 FTS (Failing to Success)</div>
+                <span class="badge badge-purple">Main Project</span>
+            </div>
+            
+            <div class="section-title">📝 Chad's LinkedIn</div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="checkbox checked" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title completed">Post #1: Content Multiplier Framework</div>
+                        <div class="task-meta">Posted ✓</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox checked" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title completed">Post #2: Why 99% of Expert Content Fails</div>
+                        <div class="task-meta">Ready to post</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title">Draft Posts #3-5</div>
+                        <div class="task-meta">Cheat sheet style</div>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="section-title">📧 Newsletter</div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title">Mike Singletary / Zindo Edition</div>
+                        <div class="task-meta">Draft ready • Needs calculator CTA version</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title">Dos Equis Edition</div>
+                        <div class="task-meta">Draft ready</div>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="section-title">📢 Meta Ads</div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title">Calculator Ad Concepts (8)</div>
+                        <div class="task-meta">Prompts ready • Generate in ICON</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title">Viral Blueprint Ad Concepts (8)</div>
+                        <div class="task-meta">Prompts ready • Generate in ICON</div>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="section-title">⚙️ Automations</div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="checkbox checked" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title completed">Calculator Lead Nurture Sequence</div>
+                        <div class="task-meta">5 emails • Live in Beehiiv ✓</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Clients -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">👥 Clients</div>
+                <span class="badge badge-green">Active</span>
+            </div>
+            
+            <div class="section-title">ITC</div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="checkbox checked" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title completed">Conference Spreadsheet</div>
+                        <div class="task-meta">Dana • Completed</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="task-content">
+                        <div class="task-title">Awaiting next request</div>
+                        <div class="task-meta">Contact: Dana</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- FTS Team Requests -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">👤 FTS Team Requests</div>
+                <span class="badge badge-orange">Team</span>
+            </div>
+            
+            <div class="team-member">
+                <div class="avatar">C</div>
+                <div class="member-info">
+                    <div class="member-name">Chad</div>
+                    <div class="member-role">CEO / Founder</div>
+                </div>
+                <div class="request-count">Active</div>
+            </div>
+            <div class="team-member">
+                <div class="avatar" style="background: #8b5cf6;">D</div>
+                <div class="member-info">
+                    <div class="member-name">Dana</div>
+                    <div class="member-role">ITC Contact</div>
+                </div>
+                <div class="request-count">0 open</div>
+            </div>
+            
+            <div class="section-title" style="margin-top: 20px;">Add Team Member</div>
+            <p style="font-size: 13px; color: #64748b;">When team members request help, I'll track their tasks here separately.</p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📁 Project Files</div>
+                <span class="badge badge-blue">Reference</span>
+            </div>
+            
+            <a href="#" class="project-link">
+                📊 FTS Main<br>
+                <span class="path">memory/projects/fts.md</span>
+            </a>
+            <a href="#" class="project-link">
+                💼 Chad's LinkedIn<br>
+                <span class="path">memory/projects/fts/chads-linkedin.md</span>
+            </a>
+            <a href="#" class="project-link">
+                🎯 Calculator Ads<br>
+                <span class="path">memory/projects/fts/meta-ad-creatives.md</span>
+            </a>
+            <a href="#" class="project-link">
+                📘 Blueprint Ads<br>
+                <span class="path">memory/projects/fts/meta-ads-viral-blueprint.md</span>
+            </a>
+            <a href="#" class="project-link">
+                🏢 ITC Client<br>
+                <span class="path">memory/clients/itc.md</span>
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // Simple interactivity for checkboxes
+        document.querySelectorAll('.checkbox').forEach(cb => {
+            cb.addEventListener('click', function() {
+                const title = this.nextElementSibling.querySelector('.task-title');
+                if (this.classList.contains('checked')) {
+                    title.classList.add('completed');
+                } else {
+                    title.classList.remove('completed');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
