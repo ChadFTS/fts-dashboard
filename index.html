@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clare's Project Dashboard</title>
+    <title>FTS Project Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -68,6 +68,7 @@
         .badge-green { background: #166534; color: #86efac; }
         .badge-orange { background: #9a3412; color: #fdba74; }
         .badge-purple { background: #6b21a8; color: #d8b4fe; }
+        .badge-gold { background: #854d0e; color: #fde047; }
         
         .task-list {
             list-style: none;
@@ -119,6 +120,13 @@
             font-size: 12px;
             color: #64748b;
         }
+        .task-meta a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        .task-meta a:hover {
+            text-decoration: underline;
+        }
         .priority-high { border-left: 3px solid #ef4444; padding-left: 12px; }
         .priority-medium { border-left: 3px solid #f59e0b; padding-left: 12px; }
         .priority-low { border-left: 3px solid #22c55e; padding-left: 12px; }
@@ -136,9 +144,11 @@
             display: flex;
             gap: 16px;
             margin-bottom: 24px;
+            flex-wrap: wrap;
         }
         .stat-card {
             flex: 1;
+            min-width: 140px;
             background: #1e293b;
             border-radius: 12px;
             padding: 16px;
@@ -158,22 +168,36 @@
         
         .project-link {
             display: block;
-            padding: 8px 12px;
+            padding: 12px 16px;
             background: #334155;
-            border-radius: 6px;
-            margin-bottom: 8px;
+            border-radius: 8px;
+            margin-bottom: 10px;
             color: #e2e8f0;
             text-decoration: none;
             font-size: 14px;
-            transition: background 0.2s;
+            transition: all 0.2s;
+            border: 1px solid transparent;
         }
         .project-link:hover {
             background: #475569;
+            border-color: #60a5fa;
         }
-        .project-link .path {
-            color: #64748b;
+        .project-link .url {
+            color: #60a5fa;
             font-size: 12px;
+            word-break: break-all;
         }
+        .project-link .status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 9999px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .status-live { background: #166534; color: #86efac; }
+        .status-beta { background: #854d0e; color: #fde047; }
+        .status-dev { background: #1e40af; color: #93c5fd; }
         
         .team-member {
             display: flex;
@@ -212,109 +236,176 @@
             border-radius: 9999px;
             font-size: 12px;
         }
+        
+        @media (max-width: 600px) {
+            .stat-row { flex-direction: column; }
+            .stat-card { min-width: 100%; }
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>📊 Project Dashboard</h1>
-        <div class="date">Last updated: January 27, 2026 5:28 PM ✨ Auto-deploy works!</div>
+        <h1>📊 FTS Project Dashboard</h1>
+        <div class="date">Last updated: January 29, 2026</div>
     </div>
     
     <div class="stat-row">
         <div class="stat-card">
-            <div class="stat-number" style="color: #60a5fa;">3</div>
-            <div class="stat-label">Active Projects</div>
+            <div class="stat-number" style="color: #22c55e;">4</div>
+            <div class="stat-label">Tools Live</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number" style="color: #f59e0b;">8</div>
-            <div class="stat-label">Open Tasks</div>
+            <div class="stat-number" style="color: #60a5fa;">2</div>
+            <div class="stat-label">Newsletters Ready</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number" style="color: #22c55e;">5</div>
-            <div class="stat-label">Completed Today</div>
+            <div class="stat-number" style="color: #fbbf24;">6</div>
+            <div class="stat-label">Lead Magnets</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number" style="color: #a855f7;">1</div>
+            <div class="stat-number" style="color: #a855f7;">2</div>
             <div class="stat-label">Clients</div>
         </div>
     </div>
     
     <div class="grid">
-        <!-- FTS Tasks -->
+        <!-- Live Tools -->
         <div class="card">
             <div class="card-header">
-                <div class="card-title">🚀 FTS (Failing to Success)</div>
-                <span class="badge badge-purple">Main Project</span>
+                <div class="card-title">🛠️ Live Tools</div>
+                <span class="badge badge-green">Production</span>
             </div>
             
-            <div class="section-title">📝 Chad's LinkedIn</div>
+            <a href="https://www.ftspod.com/calculator" target="_blank" class="project-link">
+                📊 Content Reach Calculator <span class="status status-live">LIVE</span><br>
+                <span class="url">ftspod.com/calculator</span>
+            </a>
+            <a href="https://www.ftspod.com/viral-video-blueprint" target="_blank" class="project-link">
+                📘 Viral Video Blueprint <span class="status status-live">LIVE</span><br>
+                <span class="url">ftspod.com/viral-video-blueprint</span>
+            </a>
+            <a href="https://hook-generator-beta.vercel.app" target="_blank" class="project-link">
+                🎣 Hook Generator <span class="status status-beta">BETA</span><br>
+                <span class="url">hook-generator-beta.vercel.app</span>
+            </a>
+            <a href="https://hook-generator-beta.vercel.app/swipe-file.html" target="_blank" class="project-link">
+                📝 Hook Swipe File (50+ templates) <span class="status status-live">LIVE</span><br>
+                <span class="url">hook-generator-beta.vercel.app/swipe-file.html</span>
+            </a>
+        </div>
+        
+        <!-- Newsletter -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📧 Newsletter</div>
+                <span class="badge badge-gold">Content</span>
+            </div>
+            
             <ul class="task-list">
                 <li class="task-item">
-                    <div class="checkbox checked" onclick="this.classList.toggle('checked')"></div>
+                    <div class="checkbox checked"></div>
+                    <div class="task-content">
+                        <div class="task-title completed">Mike Singletary / Zindo Edition</div>
+                        <div class="task-meta">Sent 1/28 ✓ • Awaiting results</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox checked"></div>
+                    <div class="task-content">
+                        <div class="task-title completed">Dos Equis Edition</div>
+                        <div class="task-meta">Ready in Beehiiv draft • <a href="https://chadfts.github.io/fts-preview/dos-equis-newsletter.html" target="_blank">Preview</a></div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Next Edition TBD</div>
+                        <div class="task-meta">Need guest/topic</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- LinkedIn -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">💼 Chad's LinkedIn</div>
+                <span class="badge badge-blue">Social</span>
+            </div>
+            
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="checkbox checked"></div>
                     <div class="task-content">
                         <div class="task-title completed">Post #1: Content Multiplier Framework</div>
                         <div class="task-meta">Posted ✓</div>
                     </div>
                 </li>
                 <li class="task-item">
-                    <div class="checkbox checked" onclick="this.classList.toggle('checked')"></div>
+                    <div class="checkbox checked"></div>
                     <div class="task-content">
                         <div class="task-title completed">Post #2: Why 99% of Expert Content Fails</div>
-                        <div class="task-meta">Ready to post</div>
+                        <div class="task-meta">Ready • Image updated</div>
                     </div>
                 </li>
                 <li class="task-item">
-                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="checkbox"></div>
                     <div class="task-content">
-                        <div class="task-title">Draft Posts #3-5</div>
-                        <div class="task-meta">Cheat sheet style</div>
-                    </div>
-                </li>
-            </ul>
-            
-            <div class="section-title">📧 Newsletter</div>
-            <ul class="task-list">
-                <li class="task-item">
-                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-                    <div class="task-content">
-                        <div class="task-title">Mike Singletary / Zindo Edition</div>
-                        <div class="task-meta">Draft ready • Needs calculator CTA version</div>
-                    </div>
-                </li>
-                <li class="task-item">
-                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
-                    <div class="task-content">
-                        <div class="task-title">Dos Equis Edition</div>
-                        <div class="task-meta">Draft ready</div>
+                        <div class="task-title">Posts #3-5 in backlog</div>
+                        <div class="task-meta">Drafts saved</div>
                     </div>
                 </li>
             </ul>
+        </div>
+        
+        <!-- Lead Magnet Backlog -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">🎯 Lead Magnet Backlog</div>
+                <span class="badge badge-purple">Ideas</span>
+            </div>
             
-            <div class="section-title">📢 Meta Ads</div>
             <ul class="task-list">
                 <li class="task-item">
-                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="checkbox checked"></div>
                     <div class="task-content">
-                        <div class="task-title">Calculator Ad Concepts (8)</div>
-                        <div class="task-meta">Prompts ready • Generate in ICON</div>
+                        <div class="task-title completed">Content Reach Calculator</div>
+                        <div class="task-meta">✓ Live</div>
                     </div>
                 </li>
                 <li class="task-item">
-                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="checkbox checked"></div>
                     <div class="task-content">
-                        <div class="task-title">Viral Blueprint Ad Concepts (8)</div>
-                        <div class="task-meta">Prompts ready • Generate in ICON</div>
+                        <div class="task-title completed">Hook Generator</div>
+                        <div class="task-meta">✓ Live (beta)</div>
                     </div>
                 </li>
-            </ul>
-            
-            <div class="section-title">⚙️ Automations</div>
-            <ul class="task-list">
                 <li class="task-item">
-                    <div class="checkbox checked" onclick="this.classList.toggle('checked')"></div>
+                    <div class="checkbox"></div>
                     <div class="task-content">
-                        <div class="task-title completed">Calculator Lead Nurture Sequence</div>
-                        <div class="task-meta">5 emails • Live in Beehiiv ✓</div>
+                        <div class="task-title">Platform Priority Quiz</div>
+                        <div class="task-meta">Spec complete • Not started</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Content ROI Calculator</div>
+                        <div class="task-meta">Concept only</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Authority Score Checker</div>
+                        <div class="task-meta">Concept only</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Content Multiplier Preview</div>
+                        <div class="task-meta">Concept only</div>
                     </div>
                 </li>
             </ul>
@@ -330,17 +421,28 @@
             <div class="section-title">ITC (Dana's client)</div>
             <ul class="task-list">
                 <li class="task-item">
-                    <div class="checkbox checked" onclick="this.classList.toggle('checked')"></div>
+                    <div class="checkbox checked"></div>
                     <div class="task-content">
                         <div class="task-title completed">Conference Spreadsheet</div>
                         <div class="task-meta">Completed</div>
                     </div>
                 </li>
                 <li class="task-item">
-                    <div class="checkbox" onclick="this.classList.toggle('checked')"></div>
+                    <div class="checkbox"></div>
                     <div class="task-content">
                         <div class="task-title">Awaiting next request</div>
                         <div class="task-meta">FTS Lead: Dana</div>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="section-title">Explain Yourself (Dana's brand)</div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="checkbox checked"></div>
+                    <div class="task-content">
+                        <div class="task-title completed">Cardone Debates - Bitcoin Episode</div>
+                        <div class="task-meta">Posted to @thedanahowell • Title, tags, thumbnail done</div>
                     </div>
                 </li>
             </ul>
@@ -377,46 +479,71 @@
                 </div>
                 <div class="request-count">0 open</div>
             </div>
-            
-            <div class="section-title" style="margin-top: 20px;">Add Team Member</div>
-            <p style="font-size: 13px; color: #64748b;">When team members request help, I'll track their tasks here separately.</p>
         </div>
         
-        <!-- Quick Links -->
+        <!-- Meta Ads -->
         <div class="card">
             <div class="card-header">
-                <div class="card-title">📁 Project Files</div>
+                <div class="card-title">📢 Meta Ads</div>
+                <span class="badge badge-orange">Marketing</span>
+            </div>
+            
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Calculator Ad Concepts (8)</div>
+                        <div class="task-meta">Prompts ready • Generate in ICON</div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="checkbox"></div>
+                    <div class="task-content">
+                        <div class="task-title">Viral Blueprint Ad Concepts (8)</div>
+                        <div class="task-meta">Prompts ready • Generate in ICON</div>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="section-title">Automations</div>
+            <ul class="task-list">
+                <li class="task-item">
+                    <div class="checkbox checked"></div>
+                    <div class="task-content">
+                        <div class="task-title completed">Calculator Lead Nurture Sequence</div>
+                        <div class="task-meta">5 emails • Live in Beehiiv ✓</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Resources -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">📁 Resources</div>
                 <span class="badge badge-blue">Reference</span>
             </div>
             
-            <a href="#" class="project-link">
-                📊 FTS Main<br>
-                <span class="path">memory/projects/fts.md</span>
+            <a href="https://hook-generator-beta.vercel.app/hook-swipe-file-pdf.html" target="_blank" class="project-link">
+                📄 Hook Swipe File (PDF version)<br>
+                <span class="url">Print-ready for email flows</span>
             </a>
-            <a href="#" class="project-link">
-                💼 Chad's LinkedIn<br>
-                <span class="path">memory/projects/fts/chads-linkedin.md</span>
+            <a href="https://chadfts.github.io/fts-preview/" target="_blank" class="project-link">
+                👁️ Newsletter Previews<br>
+                <span class="url">chadfts.github.io/fts-preview</span>
             </a>
-            <a href="#" class="project-link">
-                🎯 Calculator Ads<br>
-                <span class="path">memory/projects/fts/meta-ad-creatives.md</span>
-            </a>
-            <a href="#" class="project-link">
-                📘 Blueprint Ads<br>
-                <span class="path">memory/projects/fts/meta-ads-viral-blueprint.md</span>
-            </a>
-            <a href="#" class="project-link">
-                🏢 ITC Client<br>
-                <span class="path">memory/clients/itc.md</span>
+            <a href="https://calendly.com/chad-fts/videxpert" target="_blank" class="project-link">
+                📅 Strategy Call Booking<br>
+                <span class="url">calendly.com/chad-fts/videxpert</span>
             </a>
         </div>
     </div>
     
     <script>
-        // Simple interactivity for checkboxes
         document.querySelectorAll('.checkbox').forEach(cb => {
             cb.addEventListener('click', function() {
-                const title = this.nextElementSibling.querySelector('.task-title');
+                this.classList.toggle('checked');
+                const title = this.closest('.task-item').querySelector('.task-title');
                 if (this.classList.contains('checked')) {
                     title.classList.add('completed');
                 } else {
