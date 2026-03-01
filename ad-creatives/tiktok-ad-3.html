@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Ad Creative 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .ad-container {
+            width: 390px;
+            background: #000;
+            overflow: hidden;
+        }
+        
+        .search-bar {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            gap: 12px;
+        }
+        
+        .back-arrow {
+            color: #fff;
+            font-size: 20px;
+        }
+        
+        .search-input {
+            flex: 1;
+            background: #222;
+            border-radius: 4px;
+            padding: 10px 14px;
+            color: #999;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .search-input::before {
+            content: "🔍";
+            font-size: 12px;
+        }
+        
+        .search-btn {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .image-section {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .platform-visual {
+            text-align: center;
+        }
+        
+        .hour-badge {
+            background: #fbbf24;
+            color: #000;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 36px;
+            padding: 15px 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .arrow-explosion {
+            font-size: 30px;
+            margin: 15px 0;
+        }
+        
+        .platforms {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        
+        .platform-icon {
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .posts-count {
+            color: #22c55e;
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            margin-top: 15px;
+        }
+        
+        .logo-bar {
+            background: #fff;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 18px;
+            color: #000;
+            letter-spacing: -0.5px;
+        }
+        
+        .logo-accent {
+            color: #c44536;
+        }
+        
+        .headline-section {
+            background: #000;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        
+        .headline {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            line-height: 1.2;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+        
+        .highlight-yellow {
+            background: #fbbf24;
+            color: #000;
+            padding: 2px 6px;
+        }
+        
+        .highlight-red {
+            background: #ef4444;
+            color: #fff;
+            padding: 2px 6px;
+        }
+        
+        .swipe-indicator {
+            display: flex;
+            justify-content: center;
+            padding: 16px;
+            gap: 6px;
+        }
+        
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #666;
+        }
+        
+        .dot.active {
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="ad-container">
+        <!-- Search bar -->
+        <div class="search-bar">
+            <span class="back-arrow">←</span>
+            <div class="search-input">content repurposing</div>
+            <span class="search-btn">Search</span>
+        </div>
+        
+        <!-- Image -->
+        <div class="image-section">
+            <div class="platform-visual">
+                <div class="hour-badge">1 HOUR</div>
+                <div class="arrow-explosion">⬇️ ⬇️ ⬇️</div>
+                <div class="platforms">
+                    <div class="platform-icon">📸</div>
+                    <div class="platform-icon">🎵</div>
+                    <div class="platform-icon">💼</div>
+                    <div class="platform-icon">🐦</div>
+                    <div class="platform-icon">📺</div>
+                    <div class="platform-icon">📌</div>
+                </div>
+                <div class="posts-count">120 POSTS</div>
+            </div>
+        </div>
+        
+        <!-- Logo -->
+        <div class="logo-bar">
+            <span class="logo-text">FTS <span class="logo-accent">MEDIA</span></span>
+        </div>
+        
+        <!-- Headline -->
+        <div class="headline-section">
+            <h1 class="headline">
+                COMPANY TURNS <span class="highlight-yellow">1-HOUR CALL</span> INTO <span class="highlight-yellow">120 POSTS</span> ACROSS <span class="highlight-red">6 PLATFORMS</span>
+            </h1>
+        </div>
+        
+        <!-- Dots -->
+        <div class="swipe-indicator">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+</body>
+</html>
